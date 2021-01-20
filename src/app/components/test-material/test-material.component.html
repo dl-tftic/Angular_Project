@@ -29,3 +29,16 @@
     </mat-button-toggle-group>
     {{toggleGroup.value}}
 </div>
+
+<div>
+    <mat-table>
+        <ng-container  matColumnDef="policyNumber">
+            <mat-header-cell *matHeaderCellDef>Policy Number</mat-header-cell>
+            <mat-cell *matCellDef="let policy"></mat-cell>
+        </ng-container>
+
+        <!-- <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: tableColumns"></mat-row> -->
+
+    </mat-table>
+</div>

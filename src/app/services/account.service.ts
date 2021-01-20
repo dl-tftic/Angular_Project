@@ -25,4 +25,11 @@ export class AccountService
     const http$ = this.http.get<Account>(this._url + '/byid/' + id);
     return http$;
   }
+
+  public getAll(): Observable<Account[]>
+  {
+    console.log(this._url);
+    const http$ = this.http.get<Account[]>(this._url + '/GetAll');
+    return http$;
+  }
 }

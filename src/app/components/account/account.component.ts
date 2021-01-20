@@ -126,4 +126,19 @@ export class AccountComponent implements OnInit
 
     return account;
   }
+
+  public getAll(): Account[]
+  {
+    let accounts: Account[];
+
+    this.accountService.getAll()
+    .subscribe
+    (
+        acc => accounts = acc,
+        error => console.log(error),
+        () => console.log('HTTP request completed.')
+    );
+
+    return accounts;
+  }
 }

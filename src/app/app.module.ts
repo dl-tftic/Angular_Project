@@ -10,6 +10,8 @@ import { AccountComponent } from './components/account/account.component';
 import { MaterialModule } from './modules/material/material.module';
 import { TestMaterialComponent } from './components/test-material/test-material.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { CategoryComponent } from './components/category/category.component';
+import { ReactiveFormsModule  } from '@angular/forms';
 
 
 
@@ -19,14 +21,16 @@ import { MenuComponent } from './components/menu/menu.component';
     ProjectComponent,
     AccountComponent,
     TestMaterialComponent,
-    MenuComponent
+    MenuComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

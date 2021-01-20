@@ -2,5 +2,6 @@ export enum ApiPaths
 {
     Project = '/project',
     Product = '/product',
-    Account = '/account'
+    Account = '/account',
+    Category = '/category'
 }

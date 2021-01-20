@@ -1,5 +1,3 @@
-<p>account works!</p>
-
     {{response.firstName}} {{response.lastName}} 
 
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
@@ -21,3 +19,4 @@
     </mat-tree-node>
   </mat-tree>
 
+  <button mat-button (click)="getAll()">GetAll</button>
