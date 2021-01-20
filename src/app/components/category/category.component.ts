@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { promise } from 'protractor';
 import { Account } from 'src/app/models/account';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
 @Component({
   selector: 'app-category',
@@ -15,10 +17,9 @@ export class CategoryComponent implements OnInit
 {
 
   private cat: Category[];
-  public registerForm: FormGroup;
 
   public dataSource: Category[];
-  displayedColumns: string[] = ['Id', 'Name', 'Type', 'Description', 'Button'];
+  displayedColumns: string[]; // string[] = ['Id', 'Name', 'Type', 'Description', 'Button'];
 
 
   nameLength = 80;
@@ -26,50 +27,25 @@ export class CategoryComponent implements OnInit
   typeLength = 50;
 
   // tslint:disable-next-line: variable-name
-  constructor(private categoryService: CategoryService, private _builder: FormBuilder)
+  constructor(private categoryService: CategoryService, private _builder: FormBuilder, public dialog: MatDialog)
   {
-    categoryService.SetPath(ApiPaths.Category);
+
   }
 
   ngOnInit(): void
   {
-    this.registerForm = this._builder.group(
-      {
-        Name: this._builder.control('', [Validators.required,
-                                        Validators.maxLength(this.nameLength)]),
-        Description: this._builder.control('', [ Validators.maxLength(this.descriptionLength) ]),
-        Type: this._builder.control('', [ Validators.maxLength(this.typeLength) ])
-      }
-    );
+
+    this.displayedColumns = Category.GetDisplayedColumns();
+    this.displayedColumns.push('Button');
 
     this.categoryService.getAll().subscribe(x => this.dataSource = x);
-    const nbr = Account.GetMaxLength('login');
-    alert(nbr);
+    // const nbr = Account.GetMaxLength('login');
+    // alert(nbr);
   }
 
   public getMaxChar(nbr: number): string
   {
     return 'Max ' +  this.nameLength.toString() + ' characters';
-  }
-
-  public onSubmit(): void
-  {
-    if (this.registerForm.valid)
-    {
-      // tslint:disable-next-line: prefer-const
-      let cat: Category = {
-                            name: this.registerForm.get('Name').value,
-                            type: this.registerForm.get('Type').value,
-                            description: this.registerForm.get('Description').value,
-                            createBy: 1
-                          };
-
-      this.categoryService.insert(cat).subscribe();
-      console.log(cat.name);
-      console.log(cat.description);
-      console.log(cat.type);
-      this.getAll();
-    }
   }
 
   public getAll(): void
@@ -79,14 +55,37 @@ export class CategoryComponent implements OnInit
 
   public delete(id: number): void
   {
-    this.categoryService.delete(id).subscribe();
-    this.getAll();
+    // tslint:disable-next-line: deprecation
+    this.categoryService.delete(id).subscribe(() => this.getAll());
   }
 
   public async delete2(id: number)
   {
     await this.categoryService.delete(id).toPromise();
     this.getAll();
+  }
+
+  public createDialog(): void
+  {
+    this.dialog.open(CategoryDetailComponent, {height: '400px', width: '600px'});
+  }
+
+  public updateDialog(id: number): void
+  {
+    this.categoryService.get(id).subscribe
+          (x => this.dialog.open(
+                                  CategoryDetailComponent,
+                                  { height: '400px', width: '600px',
+                                    data: { name: x.name,
+                                            type: x.type,
+                                            description: x.description,
+                                            update: true,
+                                            insert: false
+                                          }
+                                  }
+                                )
+            );
+
   }
 
 }

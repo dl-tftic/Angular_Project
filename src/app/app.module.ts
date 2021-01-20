@@ -12,6 +12,10 @@ import { TestMaterialComponent } from './components/test-material/test-material.
 import { MenuComponent } from './components/menu/menu.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ReactiveFormsModule  } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { ProductComponent } from './components/product/product.component';
+import { CategoryDetailComponent } from './components/category/category-detail/category-detail.component';
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
 
 
 
@@ -22,7 +26,11 @@ import { ReactiveFormsModule  } from '@angular/forms';
     AccountComponent,
     TestMaterialComponent,
     MenuComponent,
-    CategoryComponent
+    CategoryComponent,
+    LoginComponent,
+    ProductComponent,
+    CategoryDetailComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,

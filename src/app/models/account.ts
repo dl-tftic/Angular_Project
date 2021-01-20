@@ -21,27 +21,21 @@ export interface IAccount
     createBy: number;
 }
 
-export interface IBase
-{
-    maxLength: any;
-    GetMaxLengthGeneric(arg0: any, arg1: string): number;
-}
-
 export class Account extends BaseClass implements IAccount
 {
-    maxLength = new Map([
-                            ['login', 50],
-                            ['lastName', 80],
-                            ['firstName', 80]
-                        ]);
+    protected static maxLength = new Map([
+                                            ['login', 50],
+                                            ['lastName', 80],
+                                            ['firstName', 80]
+                                        ]);
 
-    displayedColumn = [
-                            'id'
-                            , 'login'
-                            , 'firstName'
-                            , 'lastName'
-                            , 'activate'
-                        ];
+    protected static displayedColumn = [
+                                            'id'
+                                            , 'login'
+                                            , 'firstName'
+                                            , 'lastName'
+                                            , 'activate'
+                                        ];
 
     id: number;
     login: string;

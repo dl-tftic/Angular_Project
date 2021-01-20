@@ -7,7 +7,7 @@ import { ApiPaths } from '../api-paths.enum';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseServiceService
+export abstract class BaseServiceService
 {
 
   // tslint:disable-next-line: variable-name
@@ -21,9 +21,9 @@ export class BaseServiceService
     })
   };
 
-  constructor()
+  constructor(path: ApiPaths)
   {
-
+    this.SetPath(path);
   }
 
   public GetUrl(): string
@@ -37,12 +37,16 @@ export class BaseServiceService
   }
 
   // tslint:disable-next-line: typedef
-  errorHandler(error) {
+  errorHandler(error)
+  {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent)
+    {
       // Get client-side error
       errorMessage = error.error.message;
-    } else {
+    }
+    else
+    {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }

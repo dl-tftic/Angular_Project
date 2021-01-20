@@ -20,7 +20,7 @@
     <mat-button-toggle>Toggle</mat-button-toggle>
     <mat-button-toggle #toggleBtn checked>Toggle</mat-button-toggle>
     {{toggleBtn.checked}}
-    <button mat-mini-fab><mat-icon>settings</mat-icon></button>
+    <button mat-fab color="primary"><mat-icon>settings</mat-icon></button>
     
     <mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
         <mat-button-toggle value="angular">Angular</mat-button-toggle>
@@ -31,14 +31,30 @@
 </div>
 
 <div>
-    <mat-table>
+    <!-- 
+        <mat-table>
         <ng-container  matColumnDef="policyNumber">
             <mat-header-cell *matHeaderCellDef>Policy Number</mat-header-cell>
             <mat-cell *matCellDef="let policy"></mat-cell>
         </ng-container>
 
-        <!-- <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: tableColumns"></mat-row> -->
+         <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: tableColumns"></mat-row> 
 
-    </mat-table>
+    </mat-table> 
+-->
+</div>
+
+<div>
+            <!-- <mat-form-field appearance="fill">
+            <mat-label>Select</mat-label>
+            <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Textarea</mat-label>
+            <textarea matInput></textarea>
+        </mat-form-field> -->
 </div>

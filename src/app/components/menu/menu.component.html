@@ -1,14 +1,23 @@
 <mat-toolbar color="primary">
     <div>
+      <a [routerLink]="['login']">login</a>
+    </div>    
+    <div>
       <a [routerLink]="['project']">project</a>
+    </div>
+    <div>
+      <a [routerLink]="['product']">product</a>
     </div>
     <div>
       <a [routerLink]="['account']">account</a>
     </div>
     <div>
-        <a [routerLink]="['testMaterial']">testMaterial</a>
+      <a [routerLink]="['category']">category</a>
     </div>
     <div>
-      <a [routerLink]="['category']">category</a>
-  </div>
+      <a [routerLink]="['categorydetail']">category detail</a>
+    </div>
+    <div>
+      <a [routerLink]="['testMaterial']">testMaterial</a>
+    </div>
 </mat-toolbar>

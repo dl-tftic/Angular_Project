@@ -10,6 +10,9 @@ import { GetProjectService } from 'src/app/services/get-project.service';
 export class ProjectComponent implements OnInit
 {
 
+  public dataSource: Project[];
+  displayedColumns: string[];
+
   public response: any;
   public responseProject: Project;
 
@@ -20,25 +23,14 @@ export class ProjectComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.projectService.getProject(1).subscribe(
-                                          (response) =>
-                                          {
-                                            console.log('response received');
-                                            this.responseProject = response;
-                                            console.log(this.GetResponse);
-                                            console.log(this.response);
-                                          }
-                                        );
-
-    this.projectString = JSON.stringify(this.responseProject);
-    // this.project = JSON.parse(JSON.stringify(this.response || null ));
-    this.project = JSON.parse(JSON.stringify(this.projectString));
-    console.log(this.project);
+    this.displayedColumns = Project.GetDisplayedColumns();
+    this.displayedColumns.push('Button');
+    this.getAll();
   }
 
-  public GetResponse(): any
+  public getAll(): void
   {
-    return this.response;
+    this.projectService.getAll().subscribe(x => this.dataSource = x);
   }
 
 }

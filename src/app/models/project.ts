@@ -1,4 +1,5 @@
 import { Address } from './address';
+import { BaseClass } from './base-class';
 import { Category } from './category';
 
 
@@ -13,8 +14,21 @@ export interface IProject
     address: Address;
     categories: Category[];
 }
-export class Project implements IProject
+export class Project extends BaseClass implements IProject
 {
+    protected static maxLength = new Map([
+                                            ['code', 30],
+                                            ['name', 255],
+                                            ['description', 255]
+                                        ]);
+
+    protected static displayedColumn = [
+                                            'id'
+                                            , 'code'
+                                            , 'name'
+                                            , 'description'
+                                        ];
+
     id: number;
     name: string;
     code?: any;

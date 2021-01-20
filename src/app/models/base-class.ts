@@ -1,8 +1,8 @@
 export abstract class BaseClass
 {
-    private static maxLength = new Map();
+    protected static maxLength = new Map();
 
-    private static displayedColumn: string[];
+    protected static displayedColumn: string[];
 
     public static GetMaxLength(property: string): number
     {

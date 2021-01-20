@@ -1,3 +1,4 @@
+import { BaseClass } from './base-class';
 import { ProjectCategoryProduct } from './project-category-product';
 
 export interface ICategory
@@ -14,8 +15,21 @@ export interface ICategory
     createBy?: number;
 }
 
-export class Category implements ICategory
+export class Category extends BaseClass implements ICategory
 {
+    protected static maxLength = new Map([
+                                            ['name', 80],
+                                            ['type', 50],
+                                            ['description', 255]
+                                        ]);
+
+    protected static displayedColumn = [
+                                            'id'
+                                            , 'name'
+                                            , 'type'
+                                            , 'description'
+                                        ];
+
     projectCategoryProducts?: ProjectCategoryProduct[];
     subCategories?: any[];
     files?: File[];
