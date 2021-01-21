@@ -2,34 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscribable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ApiAction } from '../api-action.enum';
 import { ApiPaths } from '../api-paths.enum';
 import { Account } from '../models/account';
+import { BaseService } from './base-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService
+export class AccountService extends BaseService
 {
-
-    // tslint:disable-next-line: variable-name
-    private _url = environment.baseUrl + ApiPaths.Account;
 
   constructor(private http: HttpClient)
   {
-
+    super(ApiPaths.Account, http);
   }
 
   public get(id: number): Observable<Account>
   {
-    console.log(this._url + '/byid/' + id);
+    console.log(this.GetUrl() + '/byid/' + id);
     const http$ = this.http.get<Account>(this._url + '/byid/' + id);
     return http$;
   }
 
-  public getAll(): Observable<Account[]>
-  {
-    console.log(this._url);
-    const http$ = this.http.get<Account[]>(this._url + '/GetAll');
-    return http$;
-  }
 }

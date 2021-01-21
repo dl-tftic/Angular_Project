@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { BaseComponent } from 'src/app/models/base-component';
 
 
 @Component({
@@ -10,19 +11,21 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
   templateUrl: './category-detail.component.html',
   styleUrls: ['./category-detail.component.scss']
 })
-export class CategoryDetailComponent implements OnInit
+export class CategoryDetailComponent extends BaseComponent<CategoryService, Category> implements OnInit
 {
 
   public category: Category;
   public registerForm: FormGroup;
 
   // tslint:disable-next-line: variable-name
-  constructor(private categoryService: CategoryService,
-      // tslint:disable-next-line: variable-name
-              private _builder: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data: any)
+  constructor(
+                private categoryService: CategoryService,
+                // tslint:disable-next-line: variable-name
+                private _builder: FormBuilder,
+                @Inject(MAT_DIALOG_DATA) public data: any
+              )
   {
-
+    super(Category.GetDisplayedColumns(), categoryService);
   }
 
   ngOnInit(): void
@@ -41,18 +44,22 @@ export class CategoryDetailComponent implements OnInit
   {
     if (this.registerForm.valid)
     {
-      // tslint:disable-next-line: prefer-const
-      let cat: Category = {
-                            name: this.registerForm.get('Name').value,
-                            type: this.registerForm.get('Type').value,
-                            description: this.registerForm.get('Description').value,
-                            createBy: 1
-                          };
+      if (this.data.insert)
+      {
+        // tslint:disable-next-line: prefer-const
+        let cat: Category = {
+                              name: this.registerForm.get('Name').value,
+                              type: this.registerForm.get('Type').value,
+                              description: this.registerForm.get('Description').value,
+                              createBy: 1
+                            };
 
-      this.categoryService.insert(cat).subscribe();
-      console.log(cat.name);
-      console.log(cat.description);
-      console.log(cat.type);
+        // this.categoryService.insert(cat).subscribe();
+        this.insert(cat);
+        console.log(cat.name);
+        console.log(cat.description);
+        console.log(cat.type);
+      }
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from 'src/app/models/base-component';
 import { Project } from 'src/app/models/project';
 import { GetProjectService } from 'src/app/services/get-project.service';
 
@@ -7,11 +8,11 @@ import { GetProjectService } from 'src/app/services/get-project.service';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit
+export class ProjectComponent extends BaseComponent<GetProjectService, Project> implements OnInit
 {
 
   public dataSource: Project[];
-  displayedColumns: string[];
+  // displayedColumns: string[];
 
   public response: any;
   public responseProject: Project;
@@ -19,18 +20,19 @@ export class ProjectComponent implements OnInit
   private project: Project;
   private projectString: string;
 
-  constructor(private projectService: GetProjectService) { }
+  constructor(private projectService: GetProjectService)
+  {
+    super(Project.GetDisplayedColumns(), projectService);
+  }
 
   ngOnInit(): void
   {
-    this.displayedColumns = Project.GetDisplayedColumns();
-    this.displayedColumns.push('Button');
     this.getAll();
   }
 
-  public getAll(): void
-  {
-    this.projectService.getAll().subscribe(x => this.dataSource = x);
-  }
+  // public getAll(): void
+  // {
+  //   this.projectService.getAll<Project>().subscribe(x => this.dataSource = x);
+  // }
 
 }

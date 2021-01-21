@@ -4,12 +4,12 @@ import { Subscribable } from 'rxjs';
 import { ApiPaths } from '../api-paths.enum';
 import { Project } from '../models/project';
 import { environment } from './../../environments/environment';
-import { BaseServiceService } from './base-service.service';
+import { BaseService } from './base-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetProjectService extends BaseServiceService
+export class GetProjectService extends BaseService
 {
 
   // tslint:disable-next-line: variable-name
@@ -17,7 +17,7 @@ export class GetProjectService extends BaseServiceService
 
   constructor(private http: HttpClient)
   {
-    super(ApiPaths.Project);
+    super(ApiPaths.Project, http);
   }
 
   public getProject(id: number): Subscribable<any>
@@ -25,20 +25,6 @@ export class GetProjectService extends BaseServiceService
     // const params = new HttpParams().set('id', id.toString());
     // return this.http.get(this._url, {params});
     return this.http.get(this.GetUrl() + '/getbyid/' + id);
-  }
-
-  public getById(id: number): Subscribable<Project>
-  {
-    // const params = new HttpParams().set('id', id.toString());
-    // return this.http.get(this._url, {params});
-    return this.http.get<Project>(this.GetUrl() + '/getbyid/' + id);
-  }
-
-  public getAll(): Subscribable<Project[]>
-  {
-    // const params = new HttpParams().set('id', id.toString());
-    // return this.http.get(this._url, {params});
-    return this.http.get<Project[]>(this.GetUrl() + '/getAll/');
   }
 
 }

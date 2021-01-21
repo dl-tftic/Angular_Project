@@ -3,7 +3,7 @@ import { Address } from './address';
 import { BaseClass } from './base-class';
 import { ContactInfo } from './contact-info';
 import { Project } from './project';
-import { Role } from './role';
+import { Roles } from './roles';
 
 export interface IAccount
 {
@@ -14,7 +14,7 @@ export interface IAccount
     firstName: string;
     password?: any;
     salt?: any;
-    role: Role;
+    role: Roles;
     address: Address;
     contactInfos: ContactInfo[];
     createDate: Date;
@@ -44,7 +44,7 @@ export class Account extends BaseClass implements IAccount
     firstName: string;
     password?: any;
     salt?: any;
-    role: Role;
+    role: Roles;
     address: Address;
     contactInfos: ContactInfo[];
     createDate: Date;

@@ -3,6 +3,7 @@ import { Account } from 'src/app/models/account';
 import { AccountService } from '../../services/account.service';
 import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource} from '@angular/material/tree';
 import {FlatTreeControl, NestedTreeControl} from '@angular/cdk/tree';
+import { NextObserver, Observer, PartialObserver } from 'rxjs';
 
 @Component({
   selector: 'app-account',
@@ -75,13 +76,16 @@ export class AccountComponent implements OnInit
 
   public getAll(): Account[]
   {
-    this.accountService.getAll()
-    .subscribe
-    (
-        acc => this.dataSource = acc,
-        error => console.log(error),
-        () => console.log('HTTP request completed.')
-    );
+    let obs: PartialObserver<Account[]> = {
+                                            next: acc => this.dataSource = acc,
+                                            error: error => console.log(error),
+                                            complete: () => console.log('HTTP request completed.')
+                                          };
+    this.accountService.getAll<Account>()
+        .subscribe
+        (
+            obs
+        );
 
     return this.dataSource;
   }

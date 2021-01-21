@@ -16,6 +16,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductComponent } from './components/product/product.component';
 import { CategoryDetailComponent } from './components/category/category-detail/category-detail.component';
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { AccountDetailComponent } from './components/account/account-detail/account-detail.component';
+import { AccountListComponent } from './components/account/account-list/account-list.component';
 
 
 
@@ -30,7 +32,9 @@ import { CategoryListComponent } from './components/category/category-list/categ
     LoginComponent,
     ProductComponent,
     CategoryDetailComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    AccountDetailComponent,
+    AccountListComponent
   ],
   imports: [
     BrowserModule,

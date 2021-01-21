@@ -1,11 +1,11 @@
-export interface IRole
+export interface IRoles
 {
     id: number;
     role: string;
     description: string;
 }
 
-export class Role implements IRole
+export class Roles implements IRoles
 {
     id: number;
     role: string;

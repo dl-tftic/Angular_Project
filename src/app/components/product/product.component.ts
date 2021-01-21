@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit
 
   public getAll(): void
   {
-    this.productService.getAll().subscribe(x => this.dataSource = x);
+    this.productService.getAll<Product>().subscribe(x => this.dataSource = x);
   }
 
 }
