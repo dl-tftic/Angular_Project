@@ -38,7 +38,7 @@ export class AccountComponent implements OnInit
 
     // this.response = '';
     this.errorString = '';
-    this.accountService.get(1)
+    this.accountService.getById<Account>(1)
           .pipe
           (
             // tap(() => console.log('HTTP request executed')),
@@ -63,7 +63,7 @@ export class AccountComponent implements OnInit
   {
     let account: Account;
 
-    this.accountService.get(id)
+    this.accountService.getById<Account>(id)
           .subscribe
           (
               acc => account = acc,

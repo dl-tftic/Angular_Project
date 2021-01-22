@@ -9,8 +9,8 @@ import { BaseService } from './base-service.service';
 export class CountryService extends BaseService
 {
 
-  constructor(private http: HttpClient)
+  constructor()
   {
-    super(ApiPaths.Country, http);
+    super(ApiPaths.Country);
   }
 }

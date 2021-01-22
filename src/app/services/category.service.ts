@@ -12,9 +12,9 @@ import { retry, catchError } from 'rxjs/operators';
 export class CategoryService extends BaseService
 {
 
-  constructor(private http: HttpClient)
+  constructor()
   {
-    super(ApiPaths.Category, http);
+    super(ApiPaths.Category);
   }
 
   // public get(id: number): Observable<Category>

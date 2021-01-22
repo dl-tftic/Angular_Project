@@ -12,9 +12,9 @@ import { BaseService } from './base-service.service';
 export class RolesFromApiService extends BaseService
 {
 
-  constructor(private http: HttpClient)
+  constructor()
   {
-    super(ApiPaths.Roles, http);
+    super(ApiPaths.Roles);
   }
 
 }

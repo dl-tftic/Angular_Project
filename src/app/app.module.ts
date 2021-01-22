@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { CategoryDetailComponent } from './components/category/category-detail/c
 import { CategoryListComponent } from './components/category/category-list/category-list.component';
 import { AccountDetailComponent } from './components/account/account-detail/account-detail.component';
 import { AccountListComponent } from './components/account/account-list/account-list.component';
+import { AppInjectorService } from './services/app-injector.service';
 
 
 
@@ -47,4 +48,10 @@ import { AccountListComponent } from './components/account/account-list/account-
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule
+{
+  constructor(injector: Injector)
+  {
+    AppInjectorService.injector = injector;
+  }
+}

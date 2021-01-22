@@ -1,8 +1,10 @@
 import { promise } from 'protractor';
 import { Observable, Observer, PartialObserver } from 'rxjs';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { AppInjectorService } from '../services/app-injector.service';
 
 
-export interface IBaseComponent
+export interface IBaseService
 {
     getAll<U>(): Observable<U[]>;
 
@@ -13,7 +15,7 @@ export interface IBaseComponent
     delete(id: number): Observable<number>;
 }
 
-export class BaseComponent<T extends IBaseComponent, U>
+export class BaseComponent<T extends IBaseService, U>
 {
     private button = 'Button';
 
@@ -21,9 +23,13 @@ export class BaseComponent<T extends IBaseComponent, U>
 
     public dataSource: U[];
 
+    private genericType: U;
+
     public displayedColumns: string[];
 
     private deleteReturn: number;
+
+    protected snackBar: MatSnackBar;
 
     constructor(columns: string[], private serv: T)
     {
@@ -33,13 +39,33 @@ export class BaseComponent<T extends IBaseComponent, U>
         this.service = serv;
 
         // this.dataSource = this.getAll();
-        this.init();
+        // this.init();
     }
 
     public initListButton(): void
     {
         if (this.displayedColumns.includes(this.button)) {}
         else { this.displayedColumns.push(this.button); }
+    }
+
+    protected initSnackBar(): void
+    {
+        this.snackBar = AppInjectorService.injector.get(MatSnackBar);
+    }
+
+    public openSnackBar(message: string): void
+    {
+        const verticalPosition: MatSnackBarVerticalPosition = 'top';
+        const horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+
+        const config = new MatSnackBarConfig();
+        config.duration = 50000;
+        config.verticalPosition = verticalPosition;
+        config.horizontalPosition = horizontalPosition;
+        config.panelClass = 'snackClass';
+
+        this.initSnackBar();
+        this.snackBar.open(message, 'Close', config );
     }
 
     private getObserver(arg: U[]): PartialObserver<U[]>
@@ -64,34 +90,76 @@ export class BaseComponent<T extends IBaseComponent, U>
         this.getAll();
     }
 
-    getById(id: number): U
+    private async syncGetById(id: number): Promise<U>
     {
-        let rtn: U;
-        this.service.getById<U>(id).subscribe(x => rtn = x);
+        console.log(this);
+        console.log(this.genericType);
+        this.genericType = null;
+        this.genericType = await this.service.getById<U>(id). toPromise().then(x => this.genericType = x);
+        return this.genericType;
+        // return await this.service.getById<U>(id).toPromise().then(x => this.genericType = x);
+        // throw new Error('Method not implemented.');
+    }
 
-        return rtn;
-        throw new Error('Method not implemented.');
+    async getById(id: number): Promise<U>
+    {
+        // this.getById2(id);
+        // this.syncGetById(id).finally(() => this.genericType);
+        // return this.genericType;
+        return await this.service.getById<U>(id). toPromise().then(x => this.genericType = x);
+        // throw new Error('Method not implemented.');
+    }
+
+    async getById2(id: number)
+    {
+        await this.syncGetById(id);
+        // this.syncGetById(id).finally(() => this.genericType);
+        return this.genericType;
+        // throw new Error('Method not implemented.');
     }
 
     public async insert(arg: U): Promise<number>
     {
         let rtn: number;
         let data = await this.service.insert<U>(arg).toPromise().then(x => rtn = x);
-        this.init();
+        // this.init();
         return rtn;
         throw new Error('Method not implemented.');
     }
 
     public async delete(id: number): Promise<number>
     {
-        // await this.service.delete(id).subscribe(
-        //                                             x => this.deleteReturn  = x
-        //                                         );
-        await this.service.delete(id).toPromise().then(x => this.deleteReturn  = x);
-        this.init();
-        // console.log(this.deleteReturn);
-        return this.deleteReturn;
-        // return 0;
+        try
+        {
+            // await this.service.delete(id).subscribe(
+            //                                             x => this.deleteReturn  = x
+            //                                         );
+            await this.service.delete(id).toPromise().then(x => this.deleteReturn  = x);
+            // this.init();
+            // console.log(this.deleteReturn);
+            return this.deleteReturn;
+            // return 0;
+        }
+        catch (error)
+        {
+            // this.snackBar.open('Message archived');
+            this.openSnackBar(error);
+            console.log(this);
+            console.log('try catch component ' + error);
+        }
+    }
+
+    public deleteWithInit(id: number)
+    {
+        try
+        {
+            let rtn = this.delete(id).finally(() => this.init());
+            return rtn;
+        }
+        catch (error)
+        {
+            console.log('try catch' + error);
+        }
     }
 
 }

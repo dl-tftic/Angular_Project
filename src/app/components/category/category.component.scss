@@ -1,8 +1,13 @@
-// :host {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start;
-//   }
+::ng-deep .snackClass
+{
+  background: #ff030f;
+  color: black;
+}
+
+::ng-deep .mat-button-wrapper
+{
+  color: black;
+}
 
   table {
     width: 80%;

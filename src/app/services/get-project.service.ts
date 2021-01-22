@@ -15,16 +15,16 @@ export class GetProjectService extends BaseService
   // tslint:disable-next-line: variable-name
   // private _url = environment.baseUrl + ApiPaths.Project;
 
-  constructor(private http: HttpClient)
+  constructor()
   {
-    super(ApiPaths.Project, http);
+    super(ApiPaths.Project);
   }
 
-  public getProject(id: number): Subscribable<any>
-  {
-    // const params = new HttpParams().set('id', id.toString());
-    // return this.http.get(this._url, {params});
-    return this.http.get(this.GetUrl() + '/getbyid/' + id);
-  }
+  // public getProject(id: number): Subscribable<any>
+  // {
+  //   // const params = new HttpParams().set('id', id.toString());
+  //   // return this.http.get(this._url, {params});
+  //   return this.http.get(this.GetUrl() + '/getbyid/' + id);
+  // }
 
 }

@@ -13,16 +13,16 @@ import { BaseService } from './base-service.service';
 export class AccountService extends BaseService
 {
 
-  constructor(private http: HttpClient)
+  constructor()
   {
-    super(ApiPaths.Account, http);
+    super(ApiPaths.Account);
   }
 
-  public get(id: number): Observable<Account>
-  {
-    console.log(this.GetUrl() + '/byid/' + id);
-    const http$ = this.http.get<Account>(this._url + '/byid/' + id);
-    return http$;
-  }
+  // public get(id: number): Observable<Account>
+  // {
+  //   console.log(this.GetUrl() + '/byid/' + id);
+  //   const http$ = this.http.get<Account>(this._url + '/byid/' + id);
+  //   return http$;
+  // }
 
 }

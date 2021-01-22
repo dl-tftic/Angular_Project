@@ -11,21 +11,21 @@ import { BaseService } from './base-service.service';
 export class ProductService extends BaseService
 {
 
-  constructor(private http: HttpClient)
+  constructor()
   {
-    super(ApiPaths.Product, http);
+    super(ApiPaths.Product);
   }
 
-  public get(id: number): Observable<Product>
-  {
-    console.log(this.GetUrl() + '/' + id);
-    const http$ = this.http.get<Product>(this.GetUrl() + '/' + id);
-    return http$;
-  }
+  // public get(id: number): Observable<Product>
+  // {
+  //   console.log(this.GetUrl() + '/' + id);
+  //   const http$ = this.http.get<Product>(this.GetUrl() + '/' + id);
+  //   return http$;
+  // }
 
-  public delete(id: number): Observable<number>
-  {
-    return;
-  }
+  // public delete(id: number): Observable<number>
+  // {
+  //   return;
+  // }
 
 }
