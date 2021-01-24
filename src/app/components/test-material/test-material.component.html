@@ -58,3 +58,33 @@
             <textarea matInput></textarea>
         </mat-form-field> -->
 </div>
+<div>
+    <h4>mat-select</h4>
+    <mat-form-field appearance="outline">
+        <mat-label>State</mat-label>
+        <mat-select>
+            <input (keyup)="onKey($event.target.value)"> <!-- // Send user input to TS -->
+            <mat-option *ngFor="let state of selectedStates" [value]="state">{{state}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div>
+    <h3>Angular Material Select with Search</h3>
+    <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit()" class="book-form">
+    <mat-form-field class="select-book">
+        <input type="text" placeholder="Select a book" matInput formControlName="book" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let book of selectedStates" [value]="book">
+            {{book}}
+        </mat-option>
+    </mat-autocomplete>
+    <!-- <mat-error *ngIf="book.hasError('required')">
+      Book required.
+    </mat-error> -->
+  </mat-form-field>
+  <br/>
+  <br/>
+  <button mat-raised-button>Submit</button>
+  <button mat-raised-button type="button" (click)="resetForm()">Reset</button>
+</form> 
+</div>

@@ -49,4 +49,12 @@ export class Account extends BaseClass implements IAccount
     contactInfos: ContactInfo[];
     createDate: Date;
     createBy: number;
+
+    constructor()
+    {
+        super();
+
+        this.role = new Roles();
+        this.address = new Address();
+    }
 }

@@ -18,4 +18,9 @@ export class Address implements IAddress
     box?: string;
     city: City;
     country?: any;
+
+    constructor()
+    {
+        this.city = new City();
+    }
 }

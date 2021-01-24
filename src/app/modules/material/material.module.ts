@@ -13,8 +13,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 const MaterialComponents =
@@ -31,7 +33,11 @@ const MaterialComponents =
   MatTableModule,
   MatCardModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSlideToggleModule,
+  MatListModule,
+  MatDividerModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({

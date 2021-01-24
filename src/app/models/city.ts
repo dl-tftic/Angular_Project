@@ -14,4 +14,9 @@ export class City implements ICity
     country: Country;
     code: string;
     city: string;
+
+    constructor()
+    {
+        this.country = new Country();
+    }
 }

@@ -90,31 +90,12 @@ export class BaseComponent<T extends IBaseService, U>
         this.getAll();
     }
 
-    private async syncGetById(id: number): Promise<U>
-    {
-        console.log(this);
-        console.log(this.genericType);
-        this.genericType = null;
-        this.genericType = await this.service.getById<U>(id). toPromise().then(x => this.genericType = x);
-        return this.genericType;
-        // return await this.service.getById<U>(id).toPromise().then(x => this.genericType = x);
-        // throw new Error('Method not implemented.');
-    }
-
     async getById(id: number): Promise<U>
     {
         // this.getById2(id);
         // this.syncGetById(id).finally(() => this.genericType);
         // return this.genericType;
         return await this.service.getById<U>(id). toPromise().then(x => this.genericType = x);
-        // throw new Error('Method not implemented.');
-    }
-
-    async getById2(id: number)
-    {
-        await this.syncGetById(id);
-        // this.syncGetById(id).finally(() => this.genericType);
-        return this.genericType;
         // throw new Error('Method not implemented.');
     }
 

@@ -1,24 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiAction } from '../api-action.enum';
+import { ApiPaths } from '../api-paths.enum';
 import { Roles } from '../models/roles';
-import { RolesFromApiService } from './rolesFromApi.service';
+import { BaseService } from './base-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RolesService
+export class RolesService extends BaseService
 {
 
-  // tslint:disable-next-line: variable-name
-  private _roles: Roles[];
-
-  constructor(private rolesFromApi: RolesFromApiService)
+  constructor()
   {
-
+    super(ApiPaths.Roles);
   }
 
-  public load(): void
-  {
-    this.rolesFromApi.getAll<Roles>().subscribe(x => this._roles = x);
-
-  }
 }
