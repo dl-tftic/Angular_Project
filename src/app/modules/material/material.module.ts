@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 const MaterialComponents =
@@ -37,7 +38,8 @@ const MaterialComponents =
   MatSlideToggleModule,
   MatListModule,
   MatDividerModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatSidenavModule
 ];
 
 @NgModule({

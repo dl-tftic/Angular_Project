@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injector, ReflectiveInjector } from '@angular/core';
+import { Injector,  } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, throwError } from 'rxjs';
@@ -18,24 +18,29 @@ export abstract class BaseService implements IBaseService
   // tslint:disable-next-line: variable-name
   protected _url: string;
 
-  private httpCl: HttpClient;
+  protected http: HttpClient;
 
   protected snackBar: MatSnackBar;
 
-  protected httpOptions = {
-    headers: new HttpHeaders({
+  protected httpOptions =
+  {
+    headers: new HttpHeaders(
+      {
       'Content-Type': 'application/json; charset=utf-8',
-    }),
+     }
+    ),
   };
 
-  constructor(path: ApiPaths) {
+  constructor(path: ApiPaths)
+  {
     this.SetPath(path);
 
-    this.httpCl = AppInjectorService.injector.get(HttpClient);
+    this.http = AppInjectorService.injector.get(HttpClient);
 
   }
 
-  public GetUrl(): string {
+  public GetUrl(): string
+  {
     return this._url;
   }
 
@@ -43,22 +48,26 @@ export abstract class BaseService implements IBaseService
     return this.GetUrl() + action + '/';
   }
 
-  public SetPath(path: ApiPaths): void {
+  public SetPath(path: ApiPaths): void
+  {
     this._url = environment.baseUrl + path;
   }
 
-  public getAll<T>(): Observable<T[]> {
-    return this.httpCl.get<T[]>(this.GetUrl() + ApiAction.GetAll);
+  public getAll<T>(): Observable<T[]>
+  {
+    return this.http.get<T[]>(this.GetUrl() + ApiAction.GetAll);
   }
 
-  public getById<T>(id: number): Observable<T> {
-    return this.httpCl
+  public getById<T>(id: number): Observable<T>
+  {
+    return this.http
       .get<T>(this.GetUrlWithAction(ApiAction.GetById) + id)
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
-  public insert<T>(arg: T): Observable<number> {
-    const http$ = this.httpCl
+  public insert<T>(arg: T): Observable<number>
+  {
+    const http$ = this.http
       .post<number>(
         this.GetUrlWithAction(ApiAction.Insert),
         JSON.stringify(arg),
@@ -69,7 +78,7 @@ export abstract class BaseService implements IBaseService
   }
 
   public delete(id: number): Observable<number> {
-    return this.httpCl
+    return this.http
       .delete<number>(this.GetUrlWithAction(ApiAction.Delete) + id)
       .pipe(retry(1), catchError(this.errorHandler));
   }

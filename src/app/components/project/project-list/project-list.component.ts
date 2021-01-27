@@ -4,15 +4,13 @@ import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  selector: 'app-project-list',
+  templateUrl: './project-list.component.html',
+  styleUrls: ['./project-list.component.scss']
 })
-export class ProjectComponent extends BaseComponent<ProjectService, Project> implements OnInit
-{
+export class ProjectListComponent extends BaseComponent<ProjectService, Project> implements OnInit {
 
   public dataSource: Project[];
-  // displayedColumns: string[];
 
   public response: any;
   public responseProject: Project;
@@ -29,10 +27,5 @@ export class ProjectComponent extends BaseComponent<ProjectService, Project> imp
   {
     this.getAll();
   }
-
-  // public getAll(): void
-  // {
-  //   this.projectService.getAll<Project>().subscribe(x => this.dataSource = x);
-  // }
 
 }

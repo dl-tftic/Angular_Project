@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BaseComponent } from 'src/app/models/base-component';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -7,25 +8,31 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit
+export class ProductComponent extends BaseComponent<ProductService, Product> implements OnInit
 {
+  showFiller = false;
+  @ViewChild('drawer') draw;
 
-  public dataSource: Product[];
-  public displayedColumns: string[];
+  prod: Product;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService)
+  {
+    super(Product.GetDisplayedColumns(), productService);
+  }
 
   ngOnInit(): void
   {
-    this.displayedColumns = Product.GetDisplayedColumns();
-    this.displayedColumns.push('Button');
-
     this.getAll();
   }
 
-  public getAll(): void
+  public openInfo(id: number): void
   {
-    this.productService.getAll<Product>().subscribe(x => this.dataSource = x);
+    this.getById(id).then(x => this.prod = x).finally(this.draw.toggle());
+  }
+
+  public closeDrawer(): void
+  {
+    this.draw.close();
   }
 
 }

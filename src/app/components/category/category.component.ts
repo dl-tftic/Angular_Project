@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
 import { ApiPaths } from 'src/app/api-paths.enum';
 import { CategoryService } from 'src/app/services/category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,6 +16,11 @@ import { BaseComponent } from 'src/app/models/base-component';
 })
 export class CategoryComponent extends BaseComponent<CategoryService, Category> implements OnInit
 {
+
+  @Input() productCaller: boolean;
+
+  @Output() showInProduct = new EventEmitter();
+
   // tslint:disable-next-line: variable-name
   constructor(private categoryService: CategoryService,
               public dialog: MatDialog
@@ -26,6 +31,7 @@ export class CategoryComponent extends BaseComponent<CategoryService, Category> 
 
   ngOnInit(): void
   {
+    // this.showInProduct = false;
 
     this.initListButton();
 
@@ -69,6 +75,12 @@ export class CategoryComponent extends BaseComponent<CategoryService, Category> 
 
     dialogRef.afterClosed().subscribe(() => this.init());
 
+  }
+
+  closeInParent(): void
+  {
+    console.log('closeInParent');
+    if (this.productCaller) { this.showInProduct.emit(false); }
   }
 
 }

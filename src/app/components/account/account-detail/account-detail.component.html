@@ -69,19 +69,14 @@
                         value="{{account.role}}"
                         [matAutocomplete]="auto"
                     /> -->
-                    <mat-select [formControl]="accountForm.controls['role']" formControlName="role">
-                    <!-- <mat-autocomplete #auto="matAutocomplete"> -->
-                        <mat-option *ngFor="let option of roles" 
-                                        [attr.roleId]="option.id" 
-                                        [attr.data-tag]="option.role" 
-                                        [value]="option" 
+                    <mat-select [formControl]="accountForm.controls['role']" formControlName="role" >
+                        <mat-option *ngFor="let role of roles"
+                                        [value]="role.id" 
                                         #matRoles 
-                                        (click)="setRoleId(matRoles.value.id)"
+                                        (click)="setRoleId(matRoles.value)"
                         > 
-                            <!-- <input type="hidden" id="roleId" name="roleName" [value]="option.id"> -->
-                          {{option.role}}
+                          {{role.role}}
                         </mat-option>
-                      <!-- </mat-autocomplete> -->
                     </mat-select>
                 </mat-form-field>
             </mat-list-item>

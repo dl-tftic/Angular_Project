@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Subscribable } from 'rxjs';
 import { ApiPaths } from '../api-paths.enum';
 import { Project } from '../models/project';
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { BaseService } from './base-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetProjectService extends BaseService
+export class ProjectService extends BaseService
 {
 
   // tslint:disable-next-line: variable-name

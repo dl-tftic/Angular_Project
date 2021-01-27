@@ -4,6 +4,7 @@ import { AccountDetailComponent } from './components/account/account-detail/acco
 import { AccountComponent } from './components/account/account.component';
 import { CategoryDetailComponent } from './components/category/category-detail/category-detail.component';
 import { CategoryComponent } from './components/category/category.component';
+import { FilesDetailComponent } from './components/files/files-detail/files-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProjectComponent } from './components/project/project.component';
@@ -15,10 +16,12 @@ const routes: Routes =
   { path: 'product', component: ProductComponent },
   { path: 'account', component: AccountComponent },
   { path: 'accountdetail', component: AccountDetailComponent },
-  { path: 'testMaterial', component: TestMaterialComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'categorydetail', component: CategoryDetailComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'filesdetail', component: FilesDetailComponent },
+  { path: 'testMaterial', component: TestMaterialComponent }
+
 ];
 
 @NgModule({

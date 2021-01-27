@@ -19,7 +19,7 @@ export class BaseComponent<T extends IBaseService, U>
 {
     private button = 'Button';
 
-    private service: T;
+    protected service: T;
 
     public dataSource: U[];
 

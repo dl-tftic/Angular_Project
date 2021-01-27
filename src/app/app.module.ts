@@ -19,6 +19,11 @@ import { CategoryListComponent } from './components/category/category-list/categ
 import { AccountDetailComponent } from './components/account/account-detail/account-detail.component';
 import { AccountListComponent } from './components/account/account-list/account-list.component';
 import { AppInjectorService } from './services/app-injector.service';
+import { ProjectDetailComponent } from './components/project/project-detail/project-detail.component';
+import { ProjectListComponent } from './components/project/project-list/project-list.component';
+import { FilesDetailComponent } from './components/files/files-detail/files-detail.component';
+import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
+import { ButtonAddComponent } from './components/tree/button-add/button-add.component';
 
 
 
@@ -35,7 +40,12 @@ import { AppInjectorService } from './services/app-injector.service';
     CategoryDetailComponent,
     CategoryListComponent,
     AccountDetailComponent,
-    AccountListComponent
+    AccountListComponent,
+    ProjectDetailComponent,
+    ProjectListComponent,
+    FilesDetailComponent,
+    ProductDetailComponent,
+    ButtonAddComponent
   ],
   imports: [
     BrowserModule,

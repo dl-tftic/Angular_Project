@@ -1,65 +1,74 @@
-<div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-drawer-container class="example-container" class="minHeight"> 
+    <div >
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef> Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          </ng-container>
       
-        <!-- Position Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="code">
-          <th mat-header-cell *matHeaderCellDef> Code </th>
-          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="manufacturer">
-          <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
-          <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="model">
-            <th mat-header-cell *matHeaderCellDef> Model </th>
-            <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+          <ng-container matColumnDef="manufacturer">
+            <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
+            <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="revision">
-            <th mat-header-cell *matHeaderCellDef> Revision </th>
-            <td mat-cell *matCellDef="let element"> {{element.revision}} </td>
-          </ng-container>
+          <ng-container matColumnDef="model">
+              <th mat-header-cell *matHeaderCellDef> Model </th>
+              <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+            </ng-container>
 
-          <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> Description </th>
-            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-          </ng-container>
+            <ng-container matColumnDef="revision">
+              <th mat-header-cell *matHeaderCellDef> Revision </th>
+              <td mat-cell *matCellDef="let element"> {{element.revision}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="Button">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-icon-button (click)="delete(element.id)">
-                    <span class="material-icons">
-                        delete_outline
-                    </span>
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+          <ng-container matColumnDef="Button">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button (click)="deleteWithInit(element.id)">
+                      <span class="material-icons">delete_outline</span>
+                  </button>
+                  <button mat-icon-button>
+                      <span class="material-icons">update</span>
+                  </button>
+                  <button mat-icon-button (click)="openInfo(element.id)">
+                    <span class="material-icons-outlined">description</span>
+                    <!-- <i class="material-icons-outlined">description</i> -->
                 </button>
-                <button mat-icon-button>
-                    <span class="material-icons">
-                        update
-                    </span>
-                </button>
-            </td>
-          </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-</div>
+              </td>
+            </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <!-- <button type="button" mat-button (click)="drawer.toggle()">
+          Toggle sidenav
+        </button> -->
+    </div>
+  
+    <mat-drawer #drawer class="example-sidenav" mode="push" position="start">
+      <div class="example-sidenav-content">
+        <app-product-detail *ngIf="prod != null" [product]="prod" (closeDrawer)="closeDrawer()"></app-product-detail>
+      </div>
+    </mat-drawer>
+
+</mat-drawer-container>
