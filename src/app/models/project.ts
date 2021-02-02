@@ -29,6 +29,12 @@ export class Project extends BaseClass implements IProject
                                             , 'description'
                                         ];
 
+    constructor()
+    {
+        super();
+        this.address = new Address();
+    }
+
     id: number;
     name: string;
     code?: any;

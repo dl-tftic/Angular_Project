@@ -15,47 +15,53 @@
 </div> -->
 
 
-<div>
+<div style="display: inline-flex;">
 
     <form [formGroup]="filesForm" (ngSubmit)="onSubmit(inputFile.files)" >
 
-        <mat-form-field hintLabel="" appearance="outline">
-            <mat-label>Nom</mat-label>
-            <input 
-                matInput #inputName 
-                id="Name"
-                [formControl]="filesForm.controls['name']"
-                placeholder="Nom de la catégorie" 
-            />
-            <mat-hint align="end">{{inputName.value?.length || 0}}/{{255}}</mat-hint>
-            <!-- <mat-error>
-                {{filesForm.hasError('Name')}}
-            </mat-error> -->
-        </mat-form-field>
+        <div style="display: block;">
+            <mat-form-field hintLabel="" appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input 
+                    matInput #inputName 
+                    id="Name"
+                    [formControl]="filesForm.controls['name']"
+                    placeholder="Nom de la catégorie" 
+                />
+                <mat-hint align="end">{{inputName.value?.length || 0}}/{{255}}</mat-hint>
+                <!-- <mat-error>
+                    {{filesForm.hasError('Name')}}
+                </mat-error> -->
+            </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Description</mat-label>
-            <input 
-                matInput 
-                id="Description"
-                [formControl]="filesForm.controls['description']"
-            />
-        </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <input 
+                    matInput 
+                    id="Description"
+                    [formControl]="filesForm.controls['description']"
+                />
+            </mat-form-field>
 
-        
-            <input 
-                #inputFile
-                id="File"
-                type="file"
-                [formControl]="filesForm.controls['fileByte']"
-            />
-            <!--  -->
-        
-        <button mat-raised-button type="submit" color="primary">Submit</button>
-        <button mat-raised-button color="primary">Close</button>
+            
+                <input 
+                    #inputFile
+                    id="File"
+                    type="file"
+                    [formControl]="filesForm.controls['fileByte']"
+                />
+                <!--  -->
+        </div>
+        <div>
+            <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>    
+        </div>
+        <div style="display: inline-flex;">
+            <button mat-raised-button type="submit" color="primary">Submit</button>
+            <button mat-raised-button color="primary">Close</button>
+        </div>
 
     </form>
 
-    <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+    
 
 </div>

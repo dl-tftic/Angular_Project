@@ -24,8 +24,7 @@ import { ProjectListComponent } from './components/project/project-list/project-
 import { FilesDetailComponent } from './components/files/files-detail/files-detail.component';
 import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
 import { ButtonAddComponent } from './components/tree/button-add/button-add.component';
-
-
+import { AddressBaseComponent } from './components/address/address-base/address-base.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,8 @@ import { ButtonAddComponent } from './components/tree/button-add/button-add.comp
     ProjectListComponent,
     FilesDetailComponent,
     ProductDetailComponent,
-    ButtonAddComponent
+    ButtonAddComponent,
+    AddressBaseComponent
   ],
   imports: [
     BrowserModule,

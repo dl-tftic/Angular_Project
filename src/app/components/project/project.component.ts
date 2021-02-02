@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/models/base-component';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/services/project.service';
@@ -20,7 +21,7 @@ export class ProjectComponent extends BaseComponent<ProjectService, Project> imp
   private project: Project;
   private projectString: string;
 
-  constructor(private projectService: ProjectService)
+  constructor(private projectService: ProjectService, private router: Router)
   {
     super(Project.GetDisplayedColumns(), projectService);
   }
@@ -34,5 +35,10 @@ export class ProjectComponent extends BaseComponent<ProjectService, Project> imp
   // {
   //   this.projectService.getAll<Project>().subscribe(x => this.dataSource = x);
   // }
+
+  navigateTo(url: string): void
+  {
+    this.router.navigateByUrl(url);
+  }
 
 }

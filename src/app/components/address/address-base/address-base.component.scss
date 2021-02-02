@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+    float: left;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid black;
+}
+
+.inlineFlex{
+    display: block;
+    clear: both;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  .w-100{
+      width: 100%;
+  }
+
+  .rw-20{
+    width: 14%;
+}
+
+.rw-40{
+    width: 43%;
+}
+
+  @media only screen and (max-width: 600px)
+  {
+      .number{
+          width: 50%;   
+      }
+
+      .street{
+        width: 100%;
+    }
+
+    .rw-20{
+        width: 100%;
+    }
+  }
+
+@media only screen and (min-width: 600px)
+{
+    .number{
+        width: 15%;   
+    }
+
+    .street{
+        width: 70%;
+    }
+}
+// @media only screen and (min-width: 700px)
+// {
+//     // .box{
+//     //     width: 15%;
+//     // }
+
+//     .street{
+//         min-width: 800px;
+//     }
+//   }
+
+//   @media only screen and (min-width: 600px) {
+//     .number{
+//         width: 15%x;
+//     }
+//   }
+
+//   @media only screen and (min-width: 500px) {
+//     .street{
+//         width: 70%;
+//     }
+//   }

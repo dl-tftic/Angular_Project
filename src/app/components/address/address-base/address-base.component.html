@@ -1,0 +1,126 @@
+<div mat-subheader>Adresse</div>
+<div>
+    <div >
+        <div class="street">
+            <label for="street">Rue</label>
+            <mat-form-field appearance="outline" class="street" style="width: 100%;">
+                <mat-label>Rue</mat-label>
+                <input 
+                    matInput
+                    id="street"
+                    [formControl]="parentForm.controls['street']"
+                />
+            </mat-form-field>
+        </div>
+
+        <div style="display: contents;">
+            <div class="number">
+                <label for="number">N°</label>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>N°</mat-label>
+                    <input 
+                        matInput
+                        id="number"
+                        [formControl]="parentForm.controls['number']"
+                    />
+                </mat-form-field>
+            </div>
+
+            <div class="number">
+                <label for="box">Boite</label>
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Box</mat-label>
+                    <input 
+                        matInput
+                        id="box"
+                        [formControl]="parentForm.controls['box']"
+                    />
+                </mat-form-field>
+            </div>
+        </div>
+    </div >
+    <div>
+        <div class="rw-20">
+            <label for="zipCode">Code postal</label>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Code postale</mat-label>
+                <input 
+                    matInput
+                    id="zipCode"
+                    [formControl]="parentForm.controls['zipCode']"
+                    [matAutocomplete]="autoZipCode"
+                    (keyup)="onKey($event.target.value, cityZipCode)"
+                    autocomplete="chrome-off"
+                />
+                <mat-autocomplete #autoZipCode="matAutocomplete">
+                    <mat-option *ngFor="let zipCode of selectedCities" 
+                                    [value]="zipCode.code" 
+                                    #matZipCode 
+                    >
+                    {{zipCode.code}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="rw-40">
+            <label for="city">Ville</label>
+            <mat-form-field appearance="outline"  class="w-100">
+                <mat-label>Ville</mat-label>
+                <input 
+                    matInput
+                    id="city"
+                    [formControl]="parentForm.controls['city']"
+                    [matAutocomplete]="autoCityName"
+                    (keyup)="onKey($event.target.value, cityName)"
+                    autocomplete="chrome-off"
+                />
+                <mat-autocomplete #autoCityName="matAutocomplete">
+                    <mat-option *ngFor="let city of selectedCities"  
+                                    [value]="city.city" 
+                                    #matCityName 
+                                    (click)="setCityId(city.id)"
+                    >
+                    {{city.city}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <input 
+                type="hidden" 
+                id="cityId" 
+                name="cityId" 
+                [ngModel]="cityId"
+                [formControl]="parentForm.controls['cityId']"
+            >
+        </div>
+        <div class="rw-40">
+            <label for="country">Pays</label>
+            <mat-form-field appearance="outline"  class="w-100">
+                <mat-label>Pays</mat-label>
+                <input 
+                    matInput
+                    id="country"
+                    [formControl]="parentForm.controls['country']"
+                    [matAutocomplete]="autoCountry"
+                    (keyup)="onKey($event.target.value, countryType)"
+                    autocomplete="chrome-off"
+                />
+                <mat-autocomplete #autoCountry="matAutocomplete" >
+                    <mat-option *ngFor="let country of selectedCountries" 
+                                    [value]="country.name" 
+                                    #matCountry 
+                                    (click)="setCountryId(country.id)"
+                    >
+                    {{country.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <input 
+                type="hidden" 
+                id="countryId" 
+                name="countryId" 
+                [ngModel]="countryId"
+                [formControl]="parentForm.controls['countryId']"
+            >
+        </div>
+    </div>
+</div>

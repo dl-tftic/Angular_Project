@@ -1,4 +1,5 @@
 import { City } from './city';
+import { Country } from './country';
 
 export interface IAddress
 {
@@ -7,7 +8,7 @@ export interface IAddress
     number: string;
     box?: string;
     city: City;
-    country?: any;
+    country?: Country;
 }
 
 export class Address implements IAddress
@@ -17,7 +18,7 @@ export class Address implements IAddress
     number: string;
     box?: string;
     city: City;
-    country?: any;
+    country?: Country;
 
     constructor()
     {

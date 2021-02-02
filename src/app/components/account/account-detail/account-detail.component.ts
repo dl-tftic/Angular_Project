@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { returnType } from 'src/app/enum/return-type.enum';
 import { Account } from 'src/app/models/account';
 import { Address } from 'src/app/models/address';
 import { BaseComponent } from 'src/app/models/base-component';
@@ -11,13 +12,6 @@ import { CitiesService } from 'src/app/services/cities.service';
 import { CountryService } from 'src/app/services/country.service';
 import { RolesService } from 'src/app/services/roles.service';
 
-
-export enum returnType
-{
-  CityZipCode,
-  CityName,
-  Country
-}
 
 @Component({
   selector: 'app-account-detail',
@@ -152,7 +146,7 @@ export class AccountDetailComponent extends BaseComponent<AccountService, Accoun
   // Filter the states list and send back to populate the selectedStates**
   search(value: string, type: returnType): any[]
   {
-    let filter = value.toLowerCase();
+    const filter = value.toLowerCase();
 
     switch (type)
     {

@@ -1,1 +1,47 @@
-<p>project-detail works!</p>
+<div style="max-width: 800px;">
+    <div *ngIf="isAddMode">Add mode</div>
+    <div *ngIf="!isAddMode">Edit mode</div>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <div>
+            <input type="text" id="createBy" value="1" [formControl]="projectForm.controls['createBy']"/>
+            <div class="dsp-content">
+                <div class="rw-50">
+                    <label for="code">Code</label>
+                    <mat-form-field appearance="outline" class="rw-100">
+                        <mat-label>Code</mat-label>
+                        <input 
+                            matInput
+                            id="code"
+                            [formControl]="projectForm.controls['code']"
+                        />
+                    </mat-form-field>
+                </div>
+                <div class="rw-50">
+                    <label for="name">Nom</label>
+                    <mat-form-field appearance="outline" class="rw-100">
+                        <mat-label>Nom</mat-label>
+                        <input 
+                            matInput
+                            id="name"
+                            [formControl]="projectForm.controls['name']"
+                        />
+                        <mat-error>test</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="rw-100">
+                <label for="description">Description</label>
+                <mat-form-field appearance="outline" class="rw-100">
+                    <mat-label>Description</mat-label>
+                    <input 
+                        matInput
+                        id="description"
+                        [formControl]="projectForm.controls['description']"
+                    />
+                </mat-form-field>
+            </div>
+            <app-address-base [parentForm]="projectForm"></app-address-base>
+            <button mat-button color="primary" (disabled)="!projectForm.valid">Submit</button>
+        </div>
+    </form>
+</div>
