@@ -16,7 +16,9 @@ export class AddressBaseComponent implements OnInit
 
   @Input() parentForm: FormGroup;
 
+  // tslint:disable-next-line: variable-name
   private _cityId: number;
+  // tslint:disable-next-line: variable-name
   private _countryId: number;
 
   get cityId(): number
@@ -49,8 +51,10 @@ export class AddressBaseComponent implements OnInit
 
   ngOnInit(): void
   {
+    // tslint:disable-next-line: deprecation
     this.countryService.getAll<Country>().subscribe(x => this.countries = x);
 
+    // tslint:disable-next-line: deprecation
     this.cityService.getAll<City>().subscribe(x => this.cities = x);
 
     this.selectedCountries = this.countries;
@@ -61,6 +65,7 @@ export class AddressBaseComponent implements OnInit
     this.selectedCities = this.cities;
   }
 
+  // tslint:disable-next-line: typedef
   onKey(value: string, type: returnType)
   {
     console.log(value);

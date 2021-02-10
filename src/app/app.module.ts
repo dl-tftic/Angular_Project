@@ -25,6 +25,8 @@ import { FilesDetailComponent } from './components/files/files-detail/files-deta
 import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
 import { ButtonAddComponent } from './components/tree/button-add/button-add.component';
 import { AddressBaseComponent } from './components/address/address-base/address-base.component';
+import { SupplierDetailComponent } from './components/supplier/supplier-detail/supplier-detail.component';
+import { ContactInfoBaseComponent } from './components/contactInfo/contact-info-base/contact-info-base.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { AddressBaseComponent } from './components/address/address-base/address-
     FilesDetailComponent,
     ProductDetailComponent,
     ButtonAddComponent,
-    AddressBaseComponent
+    AddressBaseComponent,
+    SupplierDetailComponent,
+    ContactInfoBaseComponent
   ],
   imports: [
     BrowserModule,

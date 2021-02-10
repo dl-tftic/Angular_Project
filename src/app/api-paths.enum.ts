@@ -8,5 +8,6 @@ export enum ApiPaths
     Cities = '/cities',
     Country = '/country',
     Address = '/address',
-    Files = '/files'
+    Files = '/files',
+    Supplier = '/supplier'
 }

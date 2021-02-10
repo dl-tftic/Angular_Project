@@ -1,0 +1,30 @@
+.info{
+    width: 100%;
+    flex: auto;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.contactType{
+    width: 15%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.contactInfo{
+    width: 25%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.contactDescription{
+    width: 60%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.w100{
+    width: 100%;
+}
+

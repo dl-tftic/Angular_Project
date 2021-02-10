@@ -1,0 +1,59 @@
+<div mat-subheader *ngIf="visibility">Contact info 
+    <button mat-mini-fab color="primary" (click)="add()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div *ngIf="visibility">
+    <div class="info" *ngFor="let contactInfo of contactInfos">
+
+        <div class="contactType">
+            <!-- <label for="contactType">Type</label> -->
+            <!-- <mat-form-field appearance="outline" class="contactType" style="width: 100%;">
+                <mat-label>Type</mat-label>
+                <input 
+                    matInput
+                    id="contactType"
+                    #test
+                    value={{contactInfo.contactType}}
+                />
+            </mat-form-field> -->
+            <mat-form-field appearance="outline" class="w100">
+                <mat-label>Choose an option</mat-label>
+                <mat-select value={{contactInfo.contactType}}>
+                  <mat-option value="email">Email</mat-option>
+                  <mat-option value="phone">Telephone</mat-option>
+                  <mat-option value="gsm">GSM</mat-option>
+                  <mat-option value="fax">Fax</mat-option>
+                </mat-select>
+              </mat-form-field>
+            <!-- [formControl]="parentForm.controls['contactType']" -->
+        </div>
+
+        <div class="contactInfo">
+            <!-- <label for="contactInfo">Info</label> -->
+            <mat-form-field appearance="outline" class="w100">
+                <mat-label>Info</mat-label>
+                <input 
+                    matInput
+                    id="contactInfo"
+                    value={{contactInfo.contactInformation}}
+                />
+            </mat-form-field>
+            <!-- [formControl]="parentForm.controls['contactInfo']" -->
+        </div>
+
+        <div class="contactDescription">
+            <!-- <label for="contactDescription">Description</label> -->
+            <mat-form-field appearance="outline" class="w100">
+                <mat-label>Description</mat-label>
+                <input 
+                    matInput
+                    id="contactDescription"
+                    value={{contactInfo.description}}
+                />
+            </mat-form-field>
+            <!-- [formControl]="parentForm.controls['contactDescription']" -->
+        </div>
+        
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { AccountDetailComponent } from './components/account/account-detail/acco
 import { AccountComponent } from './components/account/account.component';
 import { CategoryDetailComponent } from './components/category/category-detail/category-detail.component';
 import { CategoryComponent } from './components/category/category.component';
+import { ContactInfoBaseComponent } from './components/contactInfo/contact-info-base/contact-info-base.component';
 import { FilesDetailComponent } from './components/files/files-detail/files-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductComponent } from './components/product/product.component';
@@ -28,6 +29,7 @@ const routes: Routes =
   { path: 'categorydetail', component: CategoryDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'filesdetail', component: FilesDetailComponent },
+  { path: 'contactinfo', component: ContactInfoBaseComponent },
   { path: 'testMaterial', component: TestMaterialComponent }
 
 ];

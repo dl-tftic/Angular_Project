@@ -71,7 +71,7 @@ export class AccountDetailComponent extends BaseComponent<AccountService, Accoun
         activate:   this.builder.control('', [  Validators.required ]),
         role:       this.builder.control('', [  Validators.required ]),
         street:     this.builder.control('', [  Validators.required ]),
-        number:        this.builder.control('', [  Validators.required ]),
+        number:     this.builder.control('', [  Validators.required ]),
         box:        this.builder.control('', [   ]),
         zipCode:    this.builder.control('', [  Validators.required ]),
         city:       this.builder.control('', [  Validators.required ]),
@@ -90,10 +90,13 @@ export class AccountDetailComponent extends BaseComponent<AccountService, Accoun
                                       )
                               );
 
+    // tslint:disable-next-line: deprecation
     this.roleService.getAll<Roles>().subscribe(x => this.roles = x);
 
+    // tslint:disable-next-line: deprecation
     this.countryService.getAll<Country>().subscribe(x => this.countries = x);
 
+    // tslint:disable-next-line: deprecation
     this.cityService.getAll<City>().subscribe(x => this.cities = x);
 
     this.selectedCountries = this.countries;
@@ -130,6 +133,7 @@ export class AccountDetailComponent extends BaseComponent<AccountService, Accoun
     this.cityId = id;
   }
 
+  // tslint:disable-next-line: typedef
   onKey(value: string, type: returnType)
   {
     console.log(value);
